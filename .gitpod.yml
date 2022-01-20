@@ -15,3 +15,8 @@ vscode:
   extensions:
     - dbaeumer.vscode-eslint
     - svelte.svelte-vscode
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
