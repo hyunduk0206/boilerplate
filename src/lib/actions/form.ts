@@ -1,6 +1,4 @@
-export const enhance = (form: HTMLFormElement, {
-	result
-}) => {
+export const enhance = (form: HTMLFormElement, { result }) => {
 	const handleSubmit = async (event: Event) => {
 		event.preventDefault();
 
@@ -15,7 +13,7 @@ export const enhance = (form: HTMLFormElement, {
 			});
 
 			if (res.ok) {
-				result(res, form)
+				result(res, form);
 			} else {
 				console.log('Fetch error: ', await res.text());
 			}

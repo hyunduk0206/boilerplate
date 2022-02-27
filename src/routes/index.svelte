@@ -31,14 +31,14 @@
 		const newTodo = await res.json();
 		todos = [...todos, newTodo];
 		form.reset();
-	}
+	};
 	const processUpdatedTodoResult = async (res: Response) => {
 		const updatedTodo = await res.json();
-		todos = todos.map(t => {
+		todos = todos.map((t) => {
 			if (t.uid === updatedTodo.uid) return updatedTodo;
 			return t;
-		})
-	}
+		});
+	};
 </script>
 
 <svelte:head>
@@ -48,16 +48,25 @@
 <div class="todos">
 	<h1>{title}</h1>
 
-	<form action="/todos.json" method="post" class="new" use:enhance={{
-		result: processNewTodoResult
-	}}>
+	<form
+		action="/todos.json"
+		method="post"
+		class="new"
+		use:enhance={{
+			result: processNewTodoResult
+		}}
+	>
 		<input type="text" name="text" aria-label="Add a todo" placeholder="+ type to add a todo" />
 	</form>
 
 	{#each todos as todo}
-		<TodoItem {todo} processDeletedTodoResult={ () => {
-			todos = todos.filter(t => t.uid !== todo.uid);
-		}} { processUpdatedTodoResult } />
+		<TodoItem
+			{todo}
+			processDeletedTodoResult={() => {
+				todos = todos.filter((t) => t.uid !== todo.uid);
+			}}
+			{processUpdatedTodoResult}
+		/>
 	{/each}
 </div>
 
